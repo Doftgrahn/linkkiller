@@ -1,0 +1,75 @@
+@import '../shared/variables';
+
+section {
+  background-image: url("../../assets/butter.jpg");
+  background-repeat: no-repeat;
+  width: 100%;
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  form {
+    margin-top: 20px;
+    width: 30%;
+    background-color: rgba(0,0,0,0.8);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    input {
+      outline: none;
+      padding: 10px;
+      display: block;
+      background-color: $color-white;
+
+      &::placeholder {
+        color: black;
+        font-size: 16px;
+      }
+    }
+
+    label {
+      margin-top: 10px;
+      color: $color-white;
+    }
+
+    button {
+      background-color: gray;
+      margin-top: 20px;
+      padding: 3px 20px;
+    }
+  }
+
+  .checkVal {
+    margin: 20px;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.8);
+  }
+}
+
+h4,
+p {
+  color: $color-white;
+}
+
+span {
+  color: $color-white;
+}
+
+.errorMessage {
+  color: red;
+}
+
+.invalid {
+  border-bottom-color: red;
+}
+
+.valid {
+  border-bottom-color: green;
+}

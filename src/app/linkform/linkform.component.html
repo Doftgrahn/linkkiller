@@ -1,0 +1,98 @@
+<section>
+    <div class="checkVal">
+      <p>Form Status: {{userForm.status}}</p>
+    </div>
+  <form [formGroup]="userForm" autocomplete="off" (ngSubmit)="onSubmit(userForm)">
+<div>
+
+  <!--  -->
+
+    <label for="firstName">First Name</label>
+
+    <input id="firstName"
+    type="text"
+    placeholder="First Name"
+    formControlName="firstName"
+    [ngClass]="{'valid' : userForm.value.firstName}"
+
+    [ngClass]="{'invalid': userForm.value.firstName}"/>
+
+    <p>FirstName is Valid? : {{userForm.controls['firstName'].valid}}</p>
+
+    <p>FirstName is touched? : {{userForm.controls['firstName'].touched}}</p>
+
+
+
+
+
+
+    <label for="lastName"> Last Name</label>
+
+    <input id="lastName"
+    type="text"
+    placeholder="Last Name"
+    formControlName="lastName" />
+
+
+    <label for="email">Email</label>
+
+    <input id="email"
+    type="text"
+    placeholder="email"
+    formControlName="email" />
+
+<!--  -->
+
+    <label for="education">Education</label>
+    <input id="education" type="text" placeholder="Education" formControlName="education" />
+
+    <label for="year">Year of Examination</label>
+    <input id="year" type="text" placeholder="Year of Examination" formControlName="yearOfExamination" />
+
+  </div>
+
+
+    <!---->
+
+    <div formGroupName="competens">
+
+      <h4>Competens!</h4>
+
+      <label for="skills">Skills</label>
+      <input id="skills" type="text" placeholder="Skills!" formControlName="skills" />
+
+
+      <label for="rating">Rating!</label>
+      <input id="rating" type="range" min="0" max="10" placeholder="Rating" formControlName="rating" />
+
+      <span *ngIf="!userForm.value.competens.rating">Please choose rating!</span>
+      <span *ngIf="userForm.value.competens.rating">{{userForm.value.competens.rating}}</span>
+    </div>
+
+    <div formGroupName="formerEmployees">
+
+      <h4>Former Employment</h4>
+      <label for="companyName">Company name</label>
+      <input id="companyName" placeholder="e.g. hej" type="text" formControlName="companyName" />
+
+      <label for="work">Work</label>
+      <input id="work" type="text" placeholder="e.g Siba" formControlName="work" />
+
+      <label for="yearOfEmployment">Year of Employment</label>
+      <input id="yearOfEmployment" placeholder="e.g. 2009" type="text" formControlName="yearOfEmployment" />
+
+      <label for="lastYearYouWorked">Last year you worked there!</label>
+      <input id="lastYearYouWorked" placeholder="e.g 2014" type="text" formControlName="lastYearYouWorked" />
+
+    </div>
+
+    <button type="submit" [disabled]="!userForm.valid">Send!</button>
+
+  </form>
+
+  <!--  -->
+
+  <div class="checkVal">
+    <p>Form Status: {{userForm.status}}</p>
+  </div>
+</section>
