@@ -1,0 +1,19 @@
+<section>
+  <h4>Competens!</h4>
+  <form [formGroup]="skillForm">
+    <div formArrayName="competens">
+      <div *ngFor="let c of competensArray.controls; let i = index" [formGroupName]="i">
+        <p>Working spot nr {{i + 1}}</p>>
+        <select>
+          <option *ngFor="let co of comp; let i = index" [value]="comp">
+            {{co.skill}}
+          </option>
+        </select>
+        <select>
+          <option *ngFor="let sk of skills" [value]="sk">{{sk.rating}}</option>
+        </select>
+      </div>
+    </div>
+    <button (click)="addForm()">click me!</button>
+  </form>
+</section>

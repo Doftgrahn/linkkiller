@@ -1,88 +1,76 @@
 <section>
-    <div class="checkVal">
-      <p>Form Status: {{userForm.status}}</p>
-    </div>
+  
   <form [formGroup]="userForm" autocomplete="off" (ngSubmit)="onSubmit(userForm)">
-<div>
+    <div>
 
-  <!--  -->
+      <!-- First Name -->
 
-    <label for="firstName">First Name</label>
+      <label for="firstName">First Name</label>
 
-    <input id="firstName"
-    type="text"
-    placeholder="First Name"
-    formControlName="firstName"
-    [ngClass]="{'valid' : userForm.value.firstName}"
+      <input id="firstName" type="text" placeholder="First Name" formControlName="firstName" [ngClass]="{'valid' : firstName.valid && (firstName.touched || firstName.dirty),
+    'invalid' :  firstName.invalid && (firstName.touched || firstName.dirty)}" />
 
-    [ngClass]="{'invalid': userForm.value.firstName}"/>
+      <span class="errorMessage" *ngIf="(firstName.touched || firstName.dirty) && firstName.errors?.required">You must enter at least 2 characters.</span>
 
-    <p>FirstName is Valid? : {{userForm.controls['firstName'].valid}}</p>
-
-    <p>FirstName is touched? : {{userForm.controls['firstName'].touched}}</p>
+      <span class="errorMessage" *ngIf="(firstName.touched || firstName.dirty) && firstName.errors?.isYourName">Thats my name to!</span>
 
 
+      <!-- LastName -->
+      <label for="lastName"> Last Name</label>
+
+      <input id="lastName" type="text" placeholder="Last Name" formControlName="lastName" [ngClass]="{'valid': lastName.valid && (lastName.touched || lastName.dirty),
+  'invalid': lastName.invalid && (lastName.touched || lastName.dirty)}" />
+
+      <span class="errorMessage" *ngIf="(lastName.touched ||lastName.dirty) && lastName.errors?.required">You must enter at least 2 characters!</span>
+      <span class="errorMessage" *ngIf="(lastName.touched ||lastName.dirty) && lastName.errors?.isYourLastName">Thats my name to!</span>
 
 
+      <label for="email">Email</label>
+
+      <input id="email" type="text" placeholder="email" formControlName="email" [ngClass]="{'valid': email.valid && (email.touched || email.dirty),
+  'invalid': email.invalid && (email.touched || email.dirty)}" />
+
+      <span class="errorMessage" *ngIf="(email.touched || email.dirty) && email.errors?.required">You must enter a correct email adress</span>
 
 
-    <label for="lastName"> Last Name</label>
+      <!-- Description  -->
 
-    <input id="lastName"
-    type="text"
-    placeholder="Last Name"
-    formControlName="lastName" />
+      <label for="description">Tell us about yourself!</label>
 
+      <textarea placeholder="I love biking and to eat cheese..." class="description" name="description" formControlName="description" [ngClass]="{'valid': description.valid && (description.touched || description.dirty),
+    'invalid': description.invalid && (description.touched || description.dirty)}"></textarea>
 
-    <label for="email">Email</label>
+      <p>{{userForm.value?.description.length}}/20</p>
 
-    <input id="email"
-    type="text"
-    placeholder="email"
-    formControlName="email" />
+      <span class="errorMessage" *ngIf="(description.touched || description.dirty) && description.errors?.minlength">
+        you must write at least 20 characters </span>
 
-<!--  -->
+      <!-- Education -->
 
-    <label for="education">Education</label>
-    <input id="education" type="text" placeholder="Education" formControlName="education" />
+      <label for="education">Education</label>
+      <input id="education" type="text" placeholder="Education" formControlName="education" [ngClass]="{'valid': education.valid && (education.touched || education.dirty),
+  'invalid': education.invalid && (education.touched || education.dirty)}" />
 
-    <label for="year">Year of Examination</label>
-    <input id="year" type="text" placeholder="Year of Examination" formControlName="yearOfExamination" />
+      <span class="errorMessage" *ngIf="(education.dirty || education.touched) && education.errors?.minlength ">You must enter atleast 5 characters</span>
 
-  </div>
+      <!-- Year of Examination -->
+      <label for="year">Year of Examination</label>
 
+      <input id="year" type="text" placeholder="Year of Examination" formControlName="yearOfExamination" [ngClass]="{'valid': examination.valid && (examination.touched || examination.dirty),
+  'invalid': examination.invalid && (examination.touched || examination.dirty)}" />
 
-    <!---->
+      <span class="errorMessage" *ngIf="(examination.dirty || examination.touched) && examination.errors?.pattern">You must enter a Number</span>
+      <span class="errorMessage" *ngIf="(examination.dirty || examination.touched) && examination.errors?.max">You cannot go over 9000, because it's over 9000!!!</span>
 
-    <div formGroupName="competens">
-
-      <h4>Competens!</h4>
-
-      <label for="skills">Skills</label>
-      <input id="skills" type="text" placeholder="Skills!" formControlName="skills" />
-
-
-      <label for="rating">Rating!</label>
-      <input id="rating" type="range" min="0" max="10" placeholder="Rating" formControlName="rating" />
-
-      <span *ngIf="!userForm.value.competens.rating">Please choose rating!</span>
-      <span *ngIf="userForm.value.competens.rating">{{userForm.value.competens.rating}}</span>
     </div>
 
-    <div formGroupName="formerEmployees">
+    <!--Compentens-->
+    <!-- TODO: Create list -ish -->
 
-      <h4>Former Employment</h4>
-      <label for="companyName">Company name</label>
-      <input id="companyName" placeholder="e.g. hej" type="text" formControlName="companyName" />
+    <div>
 
-      <label for="work">Work</label>
-      <input id="work" type="text" placeholder="e.g Siba" formControlName="work" />
 
-      <label for="yearOfEmployment">Year of Employment</label>
-      <input id="yearOfEmployment" placeholder="e.g. 2009" type="text" formControlName="yearOfEmployment" />
 
-      <label for="lastYearYouWorked">Last year you worked there!</label>
-      <input id="lastYearYouWorked" placeholder="e.g 2014" type="text" formControlName="lastYearYouWorked" />
 
     </div>
 
@@ -92,7 +80,5 @@
 
   <!--  -->
 
-  <div class="checkVal">
-    <p>Form Status: {{userForm.status}}</p>
-  </div>
+
 </section>

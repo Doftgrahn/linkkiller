@@ -8,64 +8,65 @@ import { FormBuilder, Validators, AbstractControl, FormGroup } from '@angular/fo
 })
 export class LinkformComponent implements OnInit {
 
+  firstName: AbstractControl;
+  lastName: AbstractControl;
+  email: AbstractControl;
+  description: AbstractControl;
+  education: AbstractControl;
+  examination: AbstractControl;
+
   /*First Name Validation*/
-  firstNameValidation = [Validators.required, Validators.minLength(3)];
-
+  firstNameValidation = [Validators.required, Validators.minLength(5), this.isYourName];
   /*Last Name Validation*/
-  lastNameValidation = [];
-
+  lastNameValidation = [Validators.required, Validators.minLength(2),this.isYourLastName];
   /*Adress Validation*/
-  adressValidation = [];
-
+  adressValidation = [Validators.required, Validators.email];
+  /* Description Validation*/
+  descriptionValidator = [Validators.minLength(20)];
   /*Education Validation*/
-
-  educationValidation = [];
-
+  educationValidation = [Validators.minLength(5)];
   /*Year of Exam Validation*/
+  yearOfExam = [Validators.pattern("^[0-9]*$"), Validators.max(9000)];
 
-  yearOfExam = [];
-
-  /*SKill Validation*/
-
-  skillsValidation = [];
-
-  /*Rating Validation*/
-
-  ratingValidation = [];
+  /*Forms*/
 
   userForm: FormGroup = this.fb.group({
     firstName: ['', this.firstNameValidation],
     lastName: ['', this.lastNameValidation],
     email: ['', this.adressValidation],
+    description: ['', this.descriptionValidator],
     education: ['', this.educationValidation],
     yearOfExamination: ['', this.yearOfExam],
-    competens: this.fb.group({
-      skills: ['', this.skillsValidation],
-      rating: ['', this.ratingValidation],
-    }),
-    formerEmployees: this.fb.group({
-      companyName: [''],
-      work: [''],
-      yearOfEmployment: [''],
-      lastYearYouWorked: [''],
-    })
   });
-
-  onSubmit(userForm) {
-    let data = userForm.value;
-    // console.log(data);
-    // Todo, send this somewehere....
-console.log(userForm.value);
-  }
 
   constructor(private fb: FormBuilder) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.firstName = this.userForm.get('firstName');
+    this.lastName = this.userForm.get('lastName');
+    this.email = this.userForm.get('email');
+    this.description = this.userForm.get('description');
+    this.education = this.userForm.get('education');
+    this.examination = this.userForm.get('yearOfExamination');
+  }
 
-  /*
-  tidigare arbetsgivare (kan vara noll eller flera: företagsnamn, yrkesroll, anställningsår och eventuellt sista året man jobbat där)
-*/
+  isYourName(text: AbstractControl) {
+    if (text.value.toUpperCase() == 'SIMON') {
+      return { isYourName: true }
+    }
+    return null;
+  }
+  isYourLastName(text: AbstractControl) {
+    if (text.value.toUpperCase() === 'GRAHN') {
+      return { isYourLastName: true }
+    }
+    return null;
+  }
 
 
+  onSubmit(userForm: AbstractControl) {
+    let data = userForm.value;
+    // Todo, send this somewehere....
+  }
 
 }

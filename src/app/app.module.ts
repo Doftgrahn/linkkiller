@@ -10,12 +10,16 @@ import { DataService } from './shared/data.service';
 /*App Components*/
 import { AppComponent } from './app.component';
 import { LinkformComponent } from './linkform/linkform.component';
+import { FormeremploymentComponent } from './formeremployment/formeremployment.component';
+import { SkillsComponent } from './skills/skills.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LinkformComponent
+    LinkformComponent,
+    FormeremploymentComponent,
+    SkillsComponent
   ],
   imports: [
     BrowserModule,

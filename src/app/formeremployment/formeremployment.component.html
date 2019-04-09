@@ -1,0 +1,43 @@
+<section>
+
+  <form [formGroup]="formEmpl" autocomplete="off">
+    <h4>Former Employment</h4>
+    <button (click)="addMoreEmployment()">Click me!</button>
+
+    <div formArrayName="former">
+      <div *ngFor="let f of employmentArray.controls; let i = index" [formGroupName]="i" class="form__wrapper">
+        <span>Working spot nr {{i + 1}}</span>
+
+
+        <label for="companyName">Company</label>
+        <input id="companyName" placeholder="e.g. hej" type="text" formControlName="company" [ngClass]="{'valid': f.controls.company.valid && (f.controls.company.touched || f.controls.company.dity),
+       'invalid': f.controls.company.invalid && (f.controls.company.touched || f.controls.company.dirty)}" />
+        <span class="errorMessage" *ngIf="(f.controls.company.touched || f.controls.company.dirty) && f.controls.company.errors?.required">Don't forget about me!</span>
+
+
+
+        <label for="work">Work</label>
+        <input id="work" type="text" placeholder="e.g Siba" formControlName="role" [ngClass]="{'valid': f.controls.role.valid && (f.controls.role.touched || f.controls.role.dity),
+      'invalid': f.controls.role.invalid && (f.controls.role.touched || f.controls.role.dirty)}" />
+        <span class="errorMessage" *ngIf="(f.controls.role.touched || f.controls.role.dirty) && f.controls.role.errors?.required">Don't forget about me!</span>
+
+
+
+        <label for="yearOfEmployment">Year of Employment</label>
+        <input id="yearOfEmployment" placeholder="e.g. 2009" type="text" formControlName="amountofYears" [ngClass]="{'valid': f.controls.amountofYears.valid && (f.controls.amountofYears.touched || f.controls.amountofYears.dity),
+        'invalid': f.controls.amountofYears.invalid && (f.controls.amountofYears.touched || f.controls.amountofYears.dirty)}" />
+        <span class="errorMessage" *ngIf="(f.controls.amountofYears.touched || f.controls.amountofYears.dirty) && f.controls.amountofYears.errors?.required">Don't forget about me!</span>
+        <span class="errorMessage" *ngIf="(f.controls.amountofYears.touched || f.controls.amountofYears.dirty) && f.controls.amountofYears.errors?.pattern">You cant only enter numbers!</span>
+
+        <label for="lastYearYouWorked">Last year you worked there!</label>
+        <input id="lastYearYouWorked" placeholder="e.g 2014" type="text" formControlName="lastYear" [ngClass]="{'valid': f.controls.lastYear.valid && (f.controls.lastYear.touched || f.controls.lastYear.dity),
+        'invalid': f.controls.lastYear.invalid && (f.controls.lastYear.touched || f.controls.lastYear.dirty)}" />
+
+        <span class="errorMessage" *ngIf="(f.controls.lastYear.touched || f.controls.lastYear.dirty) && f.controls.lastYear.errors?.required">Don't forget about me!</span>
+        <span class="errorMessage" *ngIf="(f.controls.lastYear.touched || f.controls.lastYear.dirty) && f.controls.lastYear.errors?.pattern">You can only enter numbers</span>
+
+      </div>
+    </div>
+  </form>
+
+</section>

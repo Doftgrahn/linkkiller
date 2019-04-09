@@ -1,36 +1,51 @@
 import { Injectable } from '@angular/core';
-import { User } from './user';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  user: User[] = [{
-    firstName: null,
-    lastName: null,
-    adress: null,
-    education: null,
-    yearOfExamination: null,
-    competens: [{
-      value: null,
-      rating: null,
-    }],
-  }];
+  competens = [{
+    skill: 'html',
+  },
+  {
+    skill: 'javascript',
+  },
+  {
+    skill: 'jQuery',
+  },
+  {
+    skill: 'Python',
+  }
+  ];
 
-  getUser() {
-    return this.user;
+  skill = [{
+    rating: 'extremely bad'
+  },
+  {
+    rating: 'kinda bad'
+  },
+  {
+    rating: 'good'
+  },
+  {
+    rating: 'kinda good'
+  }, {
+    rating: 'extremely good'
+  }, {
+    rating: 'Mythical'
+  },
+  ];
+
+  getSkill() {
+    return this.skill;
   }
 
-  formerEmployee = [{
 
-  }];
-
-
-
-
-
-
+  getCompetensItem() {
+    return this.competens;
+  }
 
 
   constructor() { }

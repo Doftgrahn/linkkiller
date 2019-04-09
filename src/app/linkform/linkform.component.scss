@@ -7,13 +7,12 @@ section {
   background-size: cover;
   background-attachment: fixed;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
 
   form {
     margin-top: 20px;
-    width: 30%;
+    width: 90%;
     background-color: rgba(0,0,0,0.8);
     padding: 20px;
     display: flex;
@@ -23,8 +22,10 @@ section {
     justify-content: center;
 
     input {
+      margin-top: 20px;
       outline: none;
       padding: 10px;
+      width: 300px;
       display: block;
       background-color: $color-white;
 
@@ -36,7 +37,23 @@ section {
 
     label {
       margin-top: 10px;
+      margin-bottom: 10px;
       color: $color-white;
+    }
+
+    .description {
+      width: 300px;
+      height: 200px;
+      overflow: auto;
+      resize: none;
+      background: gray center center no-repeat;
+      margin-top: 20px;
+      display: block;
+      padding: 10px;
+
+      &::placeholder {
+        color: black;
+      }
     }
 
     button {
@@ -60,6 +77,7 @@ p {
 
 span {
   color: $color-white;
+  display: block;
 }
 
 .errorMessage {
@@ -67,9 +85,11 @@ span {
 }
 
 .invalid {
-  border-bottom-color: red;
+  transition: 0.4s;
+  border-left: 5px solid red;
 }
 
 .valid {
-  border-bottom-color: green;
+  transition: 0.4s;
+  border-left: 5px solid green;
 }
